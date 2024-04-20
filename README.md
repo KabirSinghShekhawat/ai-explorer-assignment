@@ -11,31 +11,45 @@ We are glad to have you here, but before you read what you're going to beat your
 - We love out of the box solutions. We prefer to call it *Jugaad* 
 - This might be just the first round, but carries the most importance of all. Give your best, and we hope you have a fun time solving this problem.
 
-## ✨ **Problem Statement: Crafting a LIVE Report Builder for Google Sheets** ✨
+## ✨ **Software 2.0 is here, are you?** ✨
 
 **Context**:
-For any software company to integrate a 3rd party APIs (eg. Stripe APIs, Shopify APIs) they need to write custom code which often takes days/months to integrate across 20-30 CRUD use cases. It requires businesses to setup entire engineering teams, build data pipelines, hiring product & project teams and what not.
+For any software company to integrate a 3rd party APIs (eg. Stripe APIs, Shopify APIs) they need to write integration code which often takes days/months to integrate across 20-30 CRUD use cases. It requires businesses to setup entire engineering teams, build data pipelines, hire product & project teams and what not. On top of that they need to manage code bases by handling errors that come time and again or upgrade whenever the API version changes.
 
-**Today, YOU are going to make lives better for Engineering teams**
+**Today, YOU are going to make lives better for Engineering teams.**
 
-**Problem Statement**:
-Your job is to develop an intelligent software integrator that ONLY supports read operations in the Software 2.0 world. Your tool can accept training information / documents and partially written code as well to amplify the code generation. 
+**Assignment**:
+Your task is to develop an AI Agent (RAG) that integrates the following READ APIs of Stripe without writing any custom code or fine-tuning a model. 
+- https://docs.stripe.com/api/subscriptions/list
+- https://docs.stripe.com/api/invoices/list
+- https://docs.stripe.com/api/customers/list
+- https://docs.stripe.com/api/refunds/list
 
-**Expectation**:
-Do not try to perfect it, it’s a long journey. Build a proof of concept with some degree of accuracy.
 
-**Typical Input**:
-Context and training data to correctly understand the 3rd Party SaaS and to correctly understand the supported api documentations and everything. 
+**Typical Input & Output**:
+Your end user is a software developer who will use your provided SDK to fetch data from Stripe account by providing an api key and the following information: 
+1. Type of Data they want – Subscriptions / Invoices / Customers / Refunds (APIs listed above)
+2. Filters & Sorts to apply
+3. Limit of records they need to fetch.
 
-**Typical Output**:
-An API agent / Microservice that can authenticate and fetch data from the 3rd party api source.
+Your output will be a json array of the record requested. 
 
 **Other pointers**:
-1. Put the right checks and balances in your system. Do not custom code this out.
-2. Brownie points if you can define proper benchmarks for such a tool's existence.
-  
+1. Do not custom code this out. Here is a bare minimum checklist (items) to handle – API schema, token security, filters & sort rules, datatypes.
+2. Do not try to perfect it. It is a long journey. Build a proof of concept with decent degree of accuracy.
+3. Brownie points if you can define proper benchmarks for such a tool's existence.
+4. Pre reads
+   - Software 2.0 by Andrej Karapathy – https://karpathy.medium.com/software-2-0-a64152b37c35
+   - State of GPT – https://www.youtube.com/watch?v=bZQun8Y4L2A
+
+
+**Evaluation criteria**:
+1. Configurability of the integration
+2. Software architecture
+3. Accuracy/Reliability of the data obtained from the SDK.
+
 ## Submission ⏰
-The timeline for this submission is: **Next 4 days**
+The timeline for this submission is: **Next 2 days**
 
 Some things you might want to take care of:
 - Make use of git and commit your steps!
