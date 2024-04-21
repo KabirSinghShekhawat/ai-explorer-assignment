@@ -14,7 +14,7 @@ class CodeRunner:
         code_block = extract_code_block(llm_output)
         try:
             output = self.execute_command_and_return_output(code_block)
-            print(output)
+            return output
         except Exception as e:
             print(f"Error evaluating code: {e}")
 

@@ -1,3 +1,4 @@
+import json
 import os
 
 import ollama
@@ -12,19 +13,25 @@ modelfile = """
 FROM llama3
 SYSTEM You are a 3rd party SaaS integration code generator. You only generate code and nothing else.
 You generate the functions and required data models and nothing else.
+Always return json response and never call print() in the code.
 """
 
-ollama.create(model="saas_man", modelfile=modelfile)
+ollama.create(model="stripe", modelfile=modelfile)
 
-stripe_client = StripeIntegration("", "llama3")
-prompt = stripe_client.fetch_data(
-    "Subscriptions", "customer:john;price:1200;status:done;", "", "3"
-)
+stripe_client = StripeIntegration("", "stripe")
+prompt = stripe_client.fetch_data("Customers", "", "", "3")
 
 output = ollama.generate(
-    model="saas_man",
+    model="stripe",
     prompt=prompt,
 )
-CodeRunner({"STRIPE_API_KEY": os.environ.get("STRIPE_API_KEY", "")}).run(
+response = CodeRunner({"STRIPE_API_KEY": os.environ.get("STRIPE_API_KEY", "")}).run(
     output["response"]
 )
+
+response_json = json.loads(response)
+response_json = response_json.get("data", [])
+for res in response_json:
+    customer_id = res['id']
+    email = res['email']
+    print(f"Customer ID: {customer_id}\nEmail: {email}")

@@ -9,9 +9,9 @@ class StripeIntegration:
         {'AND apply these filters if possible: ' + filter_by if filter_by else ' '}
         {'AND sort by these if possible: ' + sort_by if sort_by else ' '}
         {'AND limit records to ' + limit if limit else ' '}.
-        The script should be executable by a python Popen() call and return the data.
         The API key is in `os.environ.get('STRIPE_API_KEY')`.
-        Only write code. Do not explain anything. keep output small.
-        wrap all code in <code></code> blocks.
+        Only write code. Do not explain anything.
+        Add error handling code, return the response from stripe API directly.
+        Wrap all code in <code></code> blocks.
         """
         return prompt
