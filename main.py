@@ -29,6 +29,10 @@ response = CodeRunner({"STRIPE_API_KEY": os.environ.get("STRIPE_API_KEY", "")}).
     output["response"]
 )
 
+response_json = ollama.generate(
+    model="stripe",
+    prompt=f"Only return JSON no english. generate a valid json string from this (fix single quotes to double): {response}"
+)
 response_json = json.loads(response)
 response_json = response_json.get("data", [])
 for res in response_json:
