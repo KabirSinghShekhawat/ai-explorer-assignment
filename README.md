@@ -65,7 +65,7 @@ Once you're done, make sure you **record a video** showing your project working.
 We have a checklist at the bottom of this README file, which you should update as your progress with your assignment. It will help us evaluate your project.
 
 - [ ✅ ] My code is somewhat working! 🥳
-- [ ] I have recorded a video showing it working and embedded it in the README ▶️
+- [ ✅ ] I have recorded a video showing it working and embedded it in the README ▶️
 - [ ] I have tested all the normal working cases 😎
 - [ ] I have even solved some edge cases (brownie points) 💪
 - [ ] I added my very planned-out approach to the problem at the end of this README 📜
@@ -76,3 +76,7 @@ Also, did you know, the internet is a great place to explore? 😛
 
 ## Developer's Section
 *Add your video here, and your approach to the problem (optional). Leave some comments for us here if you want, we will be reading this :)*
+
+
+https://github.com/KabirSinghShekhawat/ai-explorer-assignment/assets/51289863/dee8d80e-50db-44b2-860b-327b544696bc
+
