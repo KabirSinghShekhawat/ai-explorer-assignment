@@ -1,11 +1,9 @@
-import json
 import os
 
 import ollama
 from dotenv import load_dotenv
 
-from src.executor.run import CodeRunner
-from src.stripe import StripeIntegration
+from src.stripe import StripeAPIs, StripeIntegration
 
 load_dotenv()  # take environment variables from .env.
 
@@ -18,24 +16,16 @@ Always return json response and never call print() in the code.
 
 ollama.create(model="stripe", modelfile=modelfile)
 
-stripe_client = StripeIntegration("", "stripe")
-prompt = stripe_client.fetch_data("Customers", "", "", "3")
+stripe_client = StripeIntegration(os.environ.get("STRIPE_API_KEY", ""), "stripe")
+response_data = stripe_client.call(StripeAPIs.CUSTOMERS, "", "", "3")
 
-output = ollama.generate(
-    model="stripe",
-    prompt=prompt,
-)
-response = CodeRunner({"STRIPE_API_KEY": os.environ.get("STRIPE_API_KEY", "")}).run(
-    output["response"]
-)
+if not response_data:
+    print("No response returned.")
+    exit(1)
 
-response_json = ollama.generate(
-    model="stripe",
-    prompt=f"Only return JSON no english. generate a valid json string from this (fix single quotes to double): {response}"
-)
-response_json = json.loads(response)
-response_json = response_json.get("data", [])
-for res in response_json:
-    customer_id = res['id']
-    email = res['email']
-    print(f"Customer ID: {customer_id}\nEmail: {email}")
+first_customer = response_data.pop()
+customer_id = first_customer.get("id", None)
+if customer_id is None:
+    raise Exception("customer ID missing.")
+
+print(first_customer)

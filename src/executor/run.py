@@ -1,9 +1,11 @@
-from genericpath import exists
 import os
 import pathlib
 import subprocess
 
+from genericpath import exists
+
 from src.executor.parse import extract_code_block
+from src.executor.post_processing import DataProcessor
 
 
 class CodeRunner:
@@ -14,7 +16,8 @@ class CodeRunner:
         code_block = extract_code_block(llm_output)
         try:
             output = self.execute_command_and_return_output(code_block)
-            return output
+            output_json = DataProcessor(model="stripe", data=output).to_json()
+            return output_json
         except Exception as e:
             print(f"Error evaluating code: {e}")
 
